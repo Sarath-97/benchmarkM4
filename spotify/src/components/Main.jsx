@@ -30,7 +30,7 @@ const Main = (props) => {
           music.map(song => (
 
             <Col key={song}>
-              <Card style={{ display: 'flex', display: 'inline' }} className='m-5'>
+              <Card style={{ display: 'flex', display: 'inline', width:'26rem' }} className='m-5'>
                 <Card.Img variant="top" src={song.album.cover_medium} />
                 <Card.Body>
                   <Card.Title style={{ color: 'white' }}>{song.artist.name}</Card.Title>
