@@ -2,41 +2,39 @@ import { Component } from "react";
 import { Form } from "react-bootstrap";
 class SearchBar extends Component {
   state = {
-    searchQuery: "queen",
+    searchQuery: "",
     song: [],
   };
 
   componentDidUpdate = async () => {
     console.log("Fetching data...");
     let response = await fetch(
-      'https://striveschool-api.herokuapp.com/api/deezer/search?q=${this.state.searchQuery}'
+      'https://striveschool-api.herokuapp.com/api/deezer/search?q=${this.props.search}'
     );
     let song = await response.json();
     console.log(
       'search fetch result ${this.state.searchQuery} are:'
     );
-   
-    console.log(song.Search);
+
+    console.log('there are songs', song.Search);
   };
 
   render() {
     return (
       <div className="mt-5">
-        <Form.Group controlId="formGroupEmail">
-        
+        <Form inline>
+
           <Form.Control
             type="text"
-            placeholder="Search movie"
-            value={this.state.searchQuery}
+            placeholder="Search"
+            value={this.props.search}
             onChange={(e) =>
-              this.setState({
-                searchQuery: e.target.value,
-              })
+              this.props.changeSearchState(e.target.value)
             }
           />
-        </Form.Group>
+        </Form>
 
-       
+
       </div>
     );
   }
